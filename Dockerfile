@@ -1,4 +1,4 @@
-# 使用最新版本的 Node.js 镜像作为基础
+﻿# 使用最新版本的 Node.js 镜像作为基础
 FROM node:latest
 
 # 设置工作目录
