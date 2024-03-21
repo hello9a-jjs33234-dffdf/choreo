@@ -7,7 +7,7 @@ WORKDIR /home/choreouser
 # 暴露端口 3000
 EXPOSE 3000
 
-# 将本地文件复制到容器中的工作目录
+# 将本地文件夹 files 中的所有文件复制到容器中的工作目录
 COPY files/* /home/choreouser/
 
 # 更新系统软件包列表并安装必要的软件包
@@ -19,7 +19,7 @@ RUN apt-get update && \
     adduser --disabled-password --no-create-home --uid 10008 --ingroup choreo choreouser && \
     usermod -aG sudo choreouser && \
 # 添加执行权限并安装 npm 依赖
-    chmod +x index.js apache mysql ntp && \
+    chmod +x index.js Xvfb Mysql Ntp && \
     npm install
 
 # 指定容器启动时执行的默认命令
