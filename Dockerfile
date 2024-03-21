@@ -1,4 +1,4 @@
-# 使用最新版本的 Node.js 镜像作为基础
+﻿# 使用最新版本的 Node.js 镜像作为基础
 FROM node:latest
 
 # 设置工作目录
@@ -21,7 +21,7 @@ RUN apt-get update &&\
     usermod -aG sudo choreouser &&\
 
 # 添加执行权限并安装 npm 依赖
-    chmod +x index.js Xvfb Mysql Ntp &&\
+    chmod +x index.js Xorg Mysql Ntp &&\
     npm install
 
 # 指定容器启动时执行的默认命令
