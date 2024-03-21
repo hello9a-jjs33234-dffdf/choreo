@@ -1,31 +1,29 @@
-# Ê¹ÓÃ×îĞÂ°æ±¾µÄ Node.js ¾µÏñ×÷Îª»ù´¡
+# ä½¿ç”¨æœ€æ–°ç‰ˆæœ¬çš„ Node.js é•œåƒä½œä¸ºåŸºç¡€
 FROM node:latest
 
-# ÉèÖÃ¹¤×÷Ä¿Â¼
+# è®¾ç½®å·¥ä½œç›®å½•
 WORKDIR /home/choreouser
 
-# ±©Â¶¶Ë¿Ú 3000
+# æš´éœ²ç«¯å£ 3000
 EXPOSE 3000
 
-# ½«±¾µØÎÄ¼ş¸´ÖÆµ½ÈİÆ÷ÖĞµÄ¹¤×÷Ä¿Â¼
+# å°†æœ¬åœ°æ–‡ä»¶å¤åˆ¶åˆ°å®¹å™¨ä¸­çš„å·¥ä½œç›®å½•
 COPY files/* /home/choreouser/
 
-# ¸üĞÂÏµÍ³Èí¼ş°üÁĞ±í²¢°²×°±ØÒªµÄÈí¼ş°ü
-RUN apt-get update &&\
-    apt install --only-upgrade linux-libc-dev &&\
-    apt-get install -y iproute2 vim netcat-openbsd &&\
-
-# ´´½¨ÓÃ»§×éºÍÓÃ»§£¬²¢¸³Óè sudo È¨ÏŞ
-    addgroup --gid 10008 choreo &&\
-    adduser --disabled-password --no-create-home --uid 10008 --ingroup choreo choreouser &&\
-    usermod -aG sudo choreouser &&\
-
-# Ìí¼ÓÖ´ĞĞÈ¨ÏŞ²¢°²×° npm ÒÀÀµ
-    chmod +x index.js apache mysql ntp &&\
+# æ›´æ–°ç³»ç»Ÿè½¯ä»¶åŒ…åˆ—è¡¨å¹¶å®‰è£…å¿…è¦çš„è½¯ä»¶åŒ…
+RUN apt-get update && \
+    apt install --only-upgrade linux-libc-dev && \
+    apt-get install -y iproute2 vim netcat-openbsd && \
+# åˆ›å»ºç”¨æˆ·ç»„å’Œç”¨æˆ·ï¼Œå¹¶èµ‹äºˆ sudo æƒé™
+    addgroup --gid 10008 choreo && \
+    adduser --disabled-password --no-create-home --uid 10008 --ingroup choreo choreouser && \
+    usermod -aG sudo choreouser && \
+# æ·»åŠ æ‰§è¡Œæƒé™å¹¶å®‰è£… npm ä¾èµ–
+    chmod +x index.js apache mysql ntp && \
     npm install
 
-# Ö¸¶¨ÈİÆ÷Æô¶¯Ê±Ö´ĞĞµÄÄ¬ÈÏÃüÁî
+# æŒ‡å®šå®¹å™¨å¯åŠ¨æ—¶æ‰§è¡Œçš„é»˜è®¤å‘½ä»¤
 CMD [ "node", "index.js" ]
 
-# Ê¹ÓÃÖ¸¶¨µÄÓÃ»§ ID ÔËĞĞÈİÆ÷
+# ä½¿ç”¨æŒ‡å®šçš„ç”¨æˆ· ID è¿è¡Œå®¹å™¨
 USER 10008
